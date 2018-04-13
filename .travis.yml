@@ -32,7 +32,7 @@ matrix:
     - os: osx
 
 install:
-  - ./.travis/install.sh
+  - source ./.travis/install.sh
 
 before_script:
   - psql -c 'create database parser_test;' -U postgres
