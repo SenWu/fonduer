@@ -3,12 +3,20 @@ dist: trusty
 language: python
 cache: pip
 
+os:
+  - linux
+  - osx
+
+compiler:
+  - gcc
+  - clang
+
 python:
-- '3.5'
-- '3.6'
+  - '3.5'
+  - '3.6'
 
 services:
-- postgresql
+  - postgresql
 
 addons:
   postgresql: '9.6'
@@ -18,37 +26,31 @@ notifications:
 
 matrix:
   fast_finish: true
+  include:
+    - os: linux
+      dist: trusty
+      sudo: false
+    - os: osx
+      osx_image: xcode9.3
+  allow_failures:
+    - os: osx
 
 install:
-- sudo apt-get -qq update
-- pip install coveralls
-- pip install flake8
-- sudo apt-get install build-essential checkinstall
-- wget poppler.freedesktop.org/poppler-0.53.0.tar.xz
-- tar -xf ./poppler-0.53.0.tar.xz
-- cd poppler-0.53.0
-- "./configure"
-- make
-- sudo checkinstall -y
-- cd ..
-- export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-- echo "Using LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-- make dev  # install package locally for tests
-- python -m spacy download en
+  - ./.travis/install.sh
 
 before_script:
-- psql -c 'create database parser_test;' -U postgres
-- psql -c 'create database e2e_test;' -U postgres
-- cd tests/e2e/
-- "./download_data.sh"
-- cd ../..
-- flake8 fonduer --count --max-line-length=127 --statistics --show-source --ignore=E731,W503,E741,E123
+  - psql -c 'create database parser_test;' -U postgres
+  - psql -c 'create database e2e_test;' -U postgres
+  - cd tests/e2e/
+  - "./download_data.sh"
+  - cd ../..
+  - flake8 fonduer --count --max-line-length=127 --statistics --show-source --ignore=E731,W503,E741,E123
 
 script:
-- travis_wait coverage run --source=fonduer -m pytest tests -v -rsXx
+  - travis_wait coverage run --source=fonduer -m pytest tests -v -rsXx
 
 after_success:
-- coveralls
+  - coveralls
 
 deploy:
   provider: pypi
