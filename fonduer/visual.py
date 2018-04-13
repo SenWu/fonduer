@@ -52,6 +52,9 @@ class VisualLinker(object):
             shell=True)
         pdf_word_list = []
         coordinate_map = {}
+        if not num_pages:
+            raise RuntimeError("pdfinfo unable to count pages of {}".format(
+                self.pdf_file))
         for i in range(1, int(num_pages) + 1):
             html_content = subprocess.check_output(
                 "pdftotext -f {} -l {} -bbox-layout '{}' -".format(
@@ -106,7 +109,8 @@ class VisualLinker(object):
         # sort pdf_word_list by page, block top then block left, top, then left
         pdf_word_list = sorted(
             pdf_word_list,
-            key=lambda word_id__: block_coordinates[word_id__[0]] + coordinate_map[word_id__[0]][1:3]
+            key=
+            lambda word_id__: block_coordinates[word_id__[0]] + coordinate_map[word_id__[0]][1:3]
         )
         return pdf_word_list, coordinate_map
 
