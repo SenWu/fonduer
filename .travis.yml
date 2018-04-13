@@ -7,10 +7,6 @@ os:
   - linux
   - osx
 
-compiler:
-  - gcc
-  - clang
-
 python:
   - '3.5'
   - '3.6'
