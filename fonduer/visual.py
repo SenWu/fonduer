@@ -109,8 +109,7 @@ class VisualLinker(object):
         # sort pdf_word_list by page, block top then block left, top, then left
         pdf_word_list = sorted(
             pdf_word_list,
-            key=
-            lambda word_id__: block_coordinates[word_id__[0]] + coordinate_map[word_id__[0]][1:3]
+            key=lambda word_id__: block_coordinates[word_id__[0]] + coordinate_map[word_id__[0]][1:3]
         )
         return pdf_word_list, coordinate_map
 
