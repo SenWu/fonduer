@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Print all commands before executing
+set -v
+
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
   brew install poppler
 else
