@@ -24,6 +24,7 @@ else
   echo "Using LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 fi
 
+pip install --upgrade pip
 pip install coveralls
 pip install flake8
 make dev
