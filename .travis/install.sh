@@ -15,6 +15,7 @@ else
   ./configure
   make
   sudo checkinstall -y
+  dpkg -L poppler-utils
   cd ..
   export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
   echo "Using LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
