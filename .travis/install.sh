@@ -1,9 +1,14 @@
 #!/bin/bash
 
+env
+
 # Print all commands before executing
 set -v
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+  brew install python3
+  virtualenv venv -p python3
+  source venv/bin/activate
   brew install poppler
 else
   # Install some custom requirements on Linux
