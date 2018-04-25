@@ -17,10 +17,18 @@ matrix:
       dist: trusty
       sudo: false
       python: 3.5
+      apt:
+        packages:
+          - build-essential
+          - checkinstall
     - os: linux
       dist: trusty
       sudo: false
       python: 3.6
+      apt:
+        packages:
+          - build-essential
+          - checkinstall
     - os: osx
       osx_image: xcode9.3
       language: generic
