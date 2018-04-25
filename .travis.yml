@@ -3,10 +3,6 @@ dist: trusty
 language: python
 cache: pip
 
-python:
-  - '3.5'
-  - '3.6'
-
 services:
   - postgresql
 
@@ -22,6 +18,9 @@ matrix:
     - os: linux
       dist: trusty
       sudo: false
+      python:
+        - '3.5'
+        - '3.6'
     - os: osx
       osx_image: xcode9.3
   allow_failures:
