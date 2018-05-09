@@ -11,6 +11,8 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
   source venv/bin/activate
   brew install poppler
 else
+  sudo apt-get update
+  sudo apt-get install checkinstall build-essential
   # Install some custom requirements on Linux
   wget poppler.freedesktop.org/poppler-0.53.0.tar.xz
   tar -xf ./poppler-0.53.0.tar.xz
