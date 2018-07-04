@@ -394,7 +394,7 @@ class TableInfo(object):
             self.table_grid.clear()
             self.row_idx = 0
             self.cell_position = 0
-            stable_id = "%s::%s:%s:%s" % (
+            stable_id = "{}::{}:{}:{}".format(
                 self.document.name,
                 "table",
                 table_idx,
@@ -436,7 +436,7 @@ class TableInfo(object):
             parts["col_start"] = col_start
             parts["col_end"] = col_end
             parts["position"] = self.cell_position
-            parts["stable_id"] = "%s::%s:%s:%s:%s" % (
+            parts["stable_id"] = "{}::{}:{}:{}:{}".format(
                 self.document.name,
                 "cell",
                 self.table.position,
@@ -487,7 +487,7 @@ class FigureInfo(object):
     def enter_figure(self, node, figure_idx):
         if node.tag == "img":
             figure_idx += 1
-            stable_id = "%s::%s:%s:%s" % (
+            stable_id = "{}::{}:{}:{}".format(
                 self.document.name,
                 "figure",
                 figure_idx,
